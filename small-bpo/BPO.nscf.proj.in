@@ -1,0 +1,47 @@
+&CONTROL
+  calculation    = 'nscf'
+  outdir         = './tmp'
+  prefix         = 'BaPbO3'
+  pseudo_dir     = './pseudo/'
+  verbosity      = 'high'
+/
+
+&SYSTEM
+  degauss        = 7.3498618e-03
+  ecutrho        = 6.0e+02
+  ecutwfc        = 7.5e+01
+  ibrav          = 0
+  nat            = 5
+  ntyp           = 3
+  occupations    = 'tetrahedra'
+  smearing       = 'cold'
+  lspinorb       = .true.
+  noncolin       = .true.
+  nbnd           = 54
+/
+
+&ELECTRONS
+  conv_thr       = 1.e-10
+  mixing_beta    = 0.1
+/
+
+ATOMIC_SPECIES
+  Ba  137.327  Ba.rel-pbe-spn-rrkjus_psl.1.0.0.UPF
+  Pb  207.2    Pb.rel-pbe-dn-rrkjus_psl.1.0.0.UPF
+  O   15.9994  O.rel-pbe-n-rrkjus_psl.1.0.0.UPF
+
+
+ATOMIC_POSITIONS crystal
+  Ba  0.5000000000  0.5000000000  0.5000000000
+  Pb  0.0000000000  0.0000000000  0.0000000000
+  O   0.5000000000  0.0000000000  0.0000000000
+  O   0.0000000000  0.5000000000  0.0000000000
+  O   0.0000000000  0.0000000000  0.5000000000
+
+CELL_PARAMETERS angstrom
+   4.360222678   0.000000000   0.000000000
+   0.000000000   4.360222678   0.000000000
+   0.000000000   0.000000000   4.360222678
+
+K_POINTS automatic
+16 16 16 0 0 0

@@ -1,0 +1,10 @@
+&inputpp
+   outdir = './tmp'
+   prefix = 'BaPbO3'
+   seedname = 'BPO'
+   spin_component = 'none'
+   write_mmn = .true.
+   write_amn = .true.
+   write_spn = .true.
+   write_unk = .false.
+/

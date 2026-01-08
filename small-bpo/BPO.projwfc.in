@@ -1,0 +1,8 @@
+&PROJWFC
+     prefix = 'BaPbO3'
+     outdir = './tmp/'
+     ngauss = -1
+     degauss = 0.03
+     DeltaE = 0.01
+     filpdos = 'BPO.pdos.dat'
+   /
