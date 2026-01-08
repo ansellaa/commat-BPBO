@@ -1,0 +1,866 @@
+ 
+             +---------------------------------------------------+
+             |                                                   |
+             |                   WANNIER90                       |
+             |                                                   |
+             +---------------------------------------------------+
+             |                                                   |
+             |        Welcome to the Maximally-Localized         |
+             |        Generalized Wannier Functions code         |
+             |            http://www.wannier.org                 |
+             |                                                   |
+             |                                                   |
+             |  Wannier90 Developer Group:                       |
+             |    Giovanni Pizzi    (EPFL)                       |
+             |    Valerio Vitale    (Cambridge)                  |
+             |    David Vanderbilt  (Rutgers University)         |
+             |    Nicola Marzari    (EPFL)                       |
+             |    Ivo Souza         (Universidad del Pais Vasco) |
+             |    Arash A. Mostofi  (Imperial College London)    |
+             |    Jonathan R. Yates (University of Oxford)       |
+             |                                                   |
+             |  For the full list of Wannier90 3.x authors,      |
+             |  please check the code documentation and the      |
+             |  README on the GitHub page of the code            |
+             |                                                   |
+             |                                                   |
+             |  Please cite                                      |
+             |                                                   |
+             |  [ref] "Wannier90 as a community code:            |
+             |        new features and applications",            |
+             |        G. Pizzi et al., J. Phys. Cond. Matt. 32,  |
+             |        165902 (2020).                             |
+             |        http://doi.org/10.1088/1361-648X/ab51ff    |
+             |                                                   |
+             |  in any publications arising from the use of      |
+             |  this code. For the method please cite            |
+             |                                                   |
+             |  [ref] "Maximally Localized Generalised Wannier   |
+             |         Functions for Composite Energy Bands"     |
+             |         N. Marzari and D. Vanderbilt              |
+             |         Phys. Rev. B 56 12847 (1997)              |
+             |                                                   |
+             |  [ref] "Maximally Localized Wannier Functions     |
+             |         for Entangled Energy Bands"               |
+             |         I. Souza, N. Marzari and D. Vanderbilt    |
+             |         Phys. Rev. B 65 035109 (2001)             |
+             |                                                   |
+             |                                                   |
+             | Copyright (c) 1996-2020                           |
+             |        The Wannier90 Developer Group and          |
+             |        individual contributors                    |
+             |                                                   |
+             |      Release: 3.1.0        5th March    2020      |
+             |                                                   |
+             | This program is free software; you can            |
+             | redistribute it and/or modify it under the terms  |
+             | of the GNU General Public License as published by |
+             | the Free Software Foundation; either version 2 of |
+             | the License, or (at your option) any later version|
+             |                                                   |
+             | This program is distributed in the hope that it   |
+             | will be useful, but WITHOUT ANY WARRANTY; without |
+             | even the implied warranty of MERCHANTABILITY or   |
+             | FITNESS FOR A PARTICULAR PURPOSE. See the GNU     |
+             | General Public License for more details.          |
+             |                                                   |
+             | You should have received a copy of the GNU General|
+             | Public License along with this program; if not,   |
+             | write to the Free Software Foundation, Inc.,      |
+             | 675 Mass Ave, Cambridge, MA 02139, USA.           |
+             |                                                   |
+             +---------------------------------------------------+
+             |    Execution started on 16Jan2025 at 08:28:49     |
+             +---------------------------------------------------+
+ 
+ ******************************************************************************
+ * -> Using CODATA 2006 constant values                                       *
+ *    (http://physics.nist.gov/cuu/Constants/index.html)                      *
+ * -> Using Bohr value from CODATA                                            *
+ ******************************************************************************
+ 
+
+ Running in parallel on  72 CPUs
+
+ 
+                                    ------
+                                    SYSTEM
+                                    ------
+ 
+                              Lattice Vectors (Ang)
+                    a_1     8.743356   0.000000   0.000000
+                    a_2     0.000000   8.743356   0.000000
+                    a_3     0.000000   0.000000   8.743356
+ 
+                   Unit Cell Volume:     668.39691  (Ang^3)
+ 
+                        Reciprocal-Space Vectors (Ang^-1)
+                    b_1     0.718624   0.000000   0.000000
+                    b_2     0.000000   0.718624   0.000000
+                    b_3     0.000000   0.000000   0.718624
+  
+ *----------------------------------------------------------------------------*
+ |   Site       Fractional Coordinate          Cartesian Coordinate (Ang)     |
+ +----------------------------------------------------------------------------+
+ | Ba   1   0.25000   0.25000   0.25000   |    2.18584   2.18584   2.18584    |
+ | Ba   2   0.25000   0.25000   0.75000   |    2.18584   2.18584   6.55752    |
+ | Ba   3   0.25000   0.75000   0.25000   |    2.18584   6.55752   2.18584    |
+ | Ba   4   0.25000   0.75000   0.75000   |    2.18584   6.55752   6.55752    |
+ | Ba   5   0.75000   0.25000   0.25000   |    6.55752   2.18584   2.18584    |
+ | Ba   6   0.75000   0.25000   0.75000   |    6.55752   2.18584   6.55752    |
+ | Ba   7   0.75000   0.75000   0.25000   |    6.55752   6.55752   2.18584    |
+ | Ba   8   0.75000   0.75000   0.75000   |    6.55752   6.55752   6.55752    |
+ | Bi   1   0.00000   0.00000   0.00000   |    0.00000   0.00000   0.00000    |
+ | Bi   2   0.50000   0.50000   0.50000   |    4.37168   4.37168   4.37168    |
+ | Pb   1   0.00000   0.00000   0.50000   |    0.00000   0.00000   4.37168    |
+ | Pb   2   0.00000   0.50000   0.00000   |    0.00000   4.37168   0.00000    |
+ | Pb   3   0.00000   0.50000   0.50000   |    0.00000   4.37168   4.37168    |
+ | Pb   4   0.50000   0.00000   0.00000   |    4.37168   0.00000   0.00000    |
+ | Pb   5   0.50000   0.00000   0.50000   |    4.37168   0.00000   4.37168    |
+ | Pb   6   0.50000   0.50000   0.00000   |    4.37168   4.37168   0.00000    |
+ | O    1   0.00000   0.25000   0.00000   |    0.00000   2.18584   0.00000    |
+ | O    2   0.00000   0.25000   0.50000   |    0.00000   2.18584   4.37168    |
+ | O    3   0.00000   0.75000   0.00000   |    0.00000   6.55752   0.00000    |
+ | O    4   0.00000   0.75000   0.50000   |    0.00000   6.55752   4.37168    |
+ | O    5   0.50000   0.25000   0.00000   |    4.37168   2.18584   0.00000    |
+ | O    6   0.50000   0.25000   0.50000   |    4.37168   2.18584   4.37168    |
+ | O    7   0.50000   0.75000   0.00000   |    4.37168   6.55752   0.00000    |
+ | O    8   0.50000   0.75000   0.50000   |    4.37168   6.55752   4.37168    |
+ | O    9   0.00000   0.00000   0.25000   |    0.00000   0.00000   2.18584    |
+ | O   10   0.00000   0.00000   0.75000   |    0.00000   0.00000   6.55752    |
+ | O   11   0.00000   0.50000   0.25000   |    0.00000   4.37168   2.18584    |
+ | O   12   0.00000   0.50000   0.75000   |    0.00000   4.37168   6.55752    |
+ | O   13   0.50000   0.00000   0.25000   |    4.37168   0.00000   2.18584    |
+ | O   14   0.50000   0.00000   0.75000   |    4.37168   0.00000   6.55752    |
+ | O   15   0.50000   0.50000   0.25000   |    4.37168   4.37168   2.18584    |
+ | O   16   0.50000   0.50000   0.75000   |    4.37168   4.37168   6.55752    |
+ | O   17   0.25000   0.00000   0.00000   |    2.18584   0.00000   0.00000    |
+ | O   18   0.25000   0.00000   0.50000   |    2.18584   0.00000   4.37168    |
+ | O   19   0.25000   0.50000   0.00000   |    2.18584   4.37168   0.00000    |
+ | O   20   0.25000   0.50000   0.50000   |    2.18584   4.37168   4.37168    |
+ | O   21   0.75000   0.00000   0.00000   |    6.55752   0.00000   0.00000    |
+ | O   22   0.75000   0.00000   0.50000   |    6.55752   0.00000   4.37168    |
+ | O   23   0.75000   0.50000   0.00000   |    6.55752   4.37168   0.00000    |
+ | O   24   0.75000   0.50000   0.50000   |    6.55752   4.37168   4.37168    |
+ *----------------------------------------------------------------------------*
+                                ------------
+                                K-POINT GRID
+                                ------------
+  
+             Grid size =  4 x  4 x  4      Total points =   64
+  
+  
+ *---------------------------------- MAIN ------------------------------------*
+ |  Number of Wannier Functions               :               160             |
+ |  Number of Objective Wannier Functions     :               160             |
+ |  Number of input Bloch states              :               432             |
+ |  Output verbosity (1=low, 5=high)          :                 1             |
+ |  Timing Level (1=low, 5=high)              :                 1             |
+ |  Optimisation (0=memory, 3=speed)          :                 3             |
+ |  Length Unit                               :               Ang             |
+ |  Post-processing setup (write *.nnkp)      :                 F             |
+ |  Using Gamma-only branch of algorithms     :                 F             |
+ *----------------------------------------------------------------------------*
+ *------------------------------- WANNIERISE ---------------------------------*
+ |  Total number of iterations                :                 0             |
+ |  Number of CG steps before reset           :                 5             |
+ |  Trial step length for line search         :             2.000             |
+ |  Convergence tolerence                     :         0.100E-09             |
+ |  Convergence window                        :                -1             |
+ |  Iterations between writing output         :                 1             |
+ |  Iterations between backing up to disk     :               100             |
+ |  Write r^2_nm to file                      :                 F             |
+ |  Write xyz WF centres to file              :                 F             |
+ |  Write on-site energies <0n|H|0n> to file  :                 T             |
+ |  Use guiding centre to control phases      :                 F             |
+ |  Use phases for initial projections        :                 F             |
+ *----------------------------------------------------------------------------*
+ *------------------------------- DISENTANGLE --------------------------------*
+ |  Using band disentanglement                :                 T             |
+ |  Total number of iterations                :               200             |
+ |  Mixing ratio                              :             0.500             |
+ |  Convergence tolerence                     :         1.000E-10             |
+ |  Convergence window                        :                 3             |
+ *----------------------------------------------------------------------------*
+ *-------------------------------- PLOTTING ----------------------------------*
+ |  Plotting interpolated bandstructure       :                 T             |
+ |   Number of K-path sections                :                 5             |
+ |   Divisions along first K-path section     :               100             |
+ |   Output format                            :           gnuplot             |
+ |   Output mode                              :               s-k             |
+ *----------------------------------------------------------------------------*
+ |   K-space path sections:                                                   |
+ |    From: G       0.000  0.000  0.000     To: X       0.000  0.500  0.000   |
+ |    From: X       0.000  0.500  0.000     To: M       0.500  0.500  0.000   |
+ |    From: M       0.500  0.500  0.000     To: R       0.500  0.500  0.500   |
+ |    From: R       0.500  0.500  0.500     To: G       0.000  0.000  0.000   |
+ |    From: G       0.000  0.000  0.000     To: M       0.500  0.500  0.000   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.084 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.179656                      6            |
+ |             2                   0.254072                     12            |
+ |             3                   0.311173                      8            |
+ |             4                   0.359312                      6            |
+ |             5                   0.401723                     24            |
+ |             6                   0.440066                     24            |
+ |             7                   0.508144                     12            |
+ |             8                   0.538968                     30            |
+ |             9                   0.568122                     24            |
+ |            10                   0.595852                     24            |
+ |            11                   0.622347                      8            |
+ |            12                   0.647759                     24            |
+ |            13                   0.672211                     48            |
+ |            14                   0.718624                      6            |
+ |            15                   0.740741                     48            |
+ |            16                   0.762216                     36            |
+ |            17                   0.783102                     24            |
+ |            18                   0.803446                     24            |
+ |            19                   0.823287                     48            |
+ |            20                   0.842661                     24            |
+ |            21                   0.880131                     24            |
+ |            22                   0.898280                     30            |
+ |            23                   0.916069                     72            |
+ |            24                   0.933520                     32            |
+ |            25                   0.967477                     72            |
+ |            26                   0.984016                     48            |
+ |            27                   1.016288                     12            |
+ |            28                   1.032045                     48            |
+ |            29                   1.047566                     48            |
+ |            30                   1.062859                     48            |
+ |            31                   1.077936                     30            |
+ |            32                   1.092805                     24            |
+ |            33                   1.107474                     72            |
+ |            34                   1.136244                     24            |
+ |            35                   1.150360                     96            |
+ |            36                   1.164304                     48            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               6                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1         0.000000    0.000000    0.179656    15.491253        |
+ |             2         0.000000    0.179656    0.000000    15.491253        |
+ |             3         0.179656    0.000000    0.000000    15.491253        |
+ |             4         0.000000    0.000000   -0.179656    15.491253        |
+ |             5         0.000000   -0.179656    0.000000    15.491253        |
+ |             6        -0.179656    0.000000    0.000000    15.491253        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1         0.000000    0.000000    0.179656                     |
+ |             2         0.000000    0.179656    0.000000                     |
+ |             3         0.179656    0.000000    0.000000                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              0.035 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement         1625.57 Mb                  |
+ |                            Wannierise:          472.15 Mb                  |
+ |                          plot_wannier:          472.15 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Starting a new Wannier90 calculation ...
+
+
+ Reading overlaps from BPBO.mmn    :  Created on 16Jan2025 at  7:50:32
+
+ Reading projections from BPBO.amn :  Created on 16Jan2025 at  7:48: 4
+
+ Time to read overlaps         60.616 (sec)
+
+ *------------------------------- DISENTANGLE --------------------------------*
+ +----------------------------------------------------------------------------+
+ |                              Energy  Windows                               |
+ |                              ---------------                               |
+ |                   Outer:   -2.00000  to   13.60000  (eV)                   |
+ |                   Inner:   -1.00000  to   13.20000  (eV)                   |
+ +----------------------------------------------------------------------------+
+   Number of target bands to extract:  160
+
+                   Unitarised projection of Wannier functions                  
+                   ------------------------------------------                  
+   A_mn = <psi_m|g_n> --> S = A.A^+ --> U = S^-1/2.A
+   In dis_project... done
+   Using an inner window (linner = T)
+   In dis_proj_froz... done
+
+                   Extraction of optimally-connected subspace                  
+                   ------------------------------------------                  
+ +---------------------------------------------------------------------+<-- DIS
+ |  Iter     Omega_I(i-1)      Omega_I(i)      Delta (frac.)    Time   |<-- DIS
+ +---------------------------------------------------------------------+<-- DIS
+       1     250.10423351     248.94922778       4.640E-03      0.00    <-- DIS
+       2     248.94922778     248.94922778      -1.110E-16      3.78    <-- DIS
+       3     248.94922778     248.94922778      -1.110E-16      7.56    <-- DIS
+       4     248.94922778     248.94922778      -1.110E-16     11.34    <-- DIS
+
+             <<<      Delta < 1.000E-10  over  3 iterations     >>>
+             <<< Disentanglement convergence criteria satisfied >>>
+
+        Final Omega_I   248.94922778 (Ang^2)
+
+ +----------------------------------------------------------------------------+
+
+ Time to disentangle bands     29.146 (sec)
+
+ Writing checkpoint file BPBO.chk... done
+
+ 
+ *------------------------------- WANNIERISE ---------------------------------*
+ +--------------------------------------------------------------------+<-- CONV
+ | Iter  Delta Spread     RMS Gradient      Spread (Ang^2)      Time  |<-- CONV
+ +--------------------------------------------------------------------+<-- CONV
+ 
+ ------------------------------------------------------------------------------
+ Initial State
+  WF centre and spread    1  ( -0.003242, -0.003984,  0.004502 )     3.02738119
+  WF centre and spread    2  ( -0.003819,  0.003435, -0.003627 )     3.02716073
+  WF centre and spread    3  (  4.368436,  4.367694,  4.376180 )     3.02738091
+  WF centre and spread    4  (  4.367859,  4.375113,  4.368051 )     3.02716044
+  WF centre and spread    5  ( -0.009279, -0.011384,  4.385766 )     5.16320817
+  WF centre and spread    6  ( -0.010917,  0.009827,  4.360297 )     5.16107447
+  WF centre and spread    7  ( -0.009279,  4.359209,  0.012862 )     5.16332008
+  WF centre and spread    8  ( -0.010917,  4.382445, -0.010385 )     5.16133623
+  WF centre and spread    9  ( -0.010168,  4.360294,  4.384540 )     5.16305303
+  WF centre and spread   10  ( -0.011959,  4.381505,  4.361293 )     5.16147483
+  WF centre and spread   11  (  4.361510, -0.011384,  0.012862 )     5.16305319
+  WF centre and spread   12  (  4.359719,  0.009827, -0.010385 )     5.16147499
+  WF centre and spread   13  (  4.362399, -0.012469,  4.384540 )     5.16331991
+  WF centre and spread   14  (  4.360761,  0.010767,  4.361293 )     5.16133606
+  WF centre and spread   15  (  4.362399,  4.360294,  0.014088 )     5.16320800
+  WF centre and spread   16  (  4.360761,  4.381505, -0.011381 )     5.16107430
+  WF centre and spread   17  (  0.000000,  2.178160,  0.000000 )     1.25622906
+  WF centre and spread   18  (  0.000000,  2.178160, -0.000000 )     1.25623114
+  WF centre and spread   19  (  0.000000,  2.178160, -0.000000 )     1.25623091
+  WF centre and spread   20  (  0.000000,  2.178160,  0.000000 )     1.25622883
+  WF centre and spread   21  ( -0.000464,  2.174002,  0.000645 )     1.87154016
+  WF centre and spread   22  ( -0.000547,  2.175213, -0.000519 )     1.87386701
+  WF centre and spread   23  ( -0.000000,  2.184442,  4.371678 )     1.26795826
+  WF centre and spread   24  ( -0.000000,  2.184442,  4.371677 )     1.26796093
+  WF centre and spread   25  (  0.000000,  2.187236,  4.371678 )     1.26795798
+  WF centre and spread   26  (  0.000000,  2.187236,  4.371678 )     1.26796064
+  WF centre and spread   27  ( -0.000908,  2.184794,  4.372939 )     2.01870691
+  WF centre and spread   28  ( -0.001070,  2.186738,  4.370662 )     2.01868912
+  WF centre and spread   29  (  0.000000,  6.565196,  0.000000 )     1.25623099
+  WF centre and spread   30  (  0.000000,  6.565196, -0.000000 )     1.25622891
+  WF centre and spread   31  (  0.000000,  6.565196, -0.000000 )     1.25622867
+  WF centre and spread   32  (  0.000000,  6.565196,  0.000000 )     1.25623075
+  WF centre and spread   33  ( -0.000464,  6.568053,  0.000645 )     1.87404514
+  WF centre and spread   34  ( -0.000547,  6.569264, -0.000519 )     1.87170777
+  WF centre and spread   35  ( -0.000000,  6.558913,  4.371678 )     1.26796073
+  WF centre and spread   36  ( -0.000000,  6.558914,  4.371677 )     1.26795806
+  WF centre and spread   37  (  0.000000,  6.556120,  4.371678 )     1.26796084
+  WF centre and spread   38  (  0.000000,  6.556120,  4.371678 )     1.26795818
+  WF centre and spread   39  ( -0.000908,  6.556473,  4.372939 )     2.01870509
+  WF centre and spread   40  ( -0.001070,  6.558417,  4.370662 )     2.01869070
+  WF centre and spread   41  (  4.371678,  2.187236,  0.000000 )     1.26796075
+  WF centre and spread   42  (  4.371678,  2.187236, -0.000000 )     1.26795809
+  WF centre and spread   43  (  4.371678,  2.184442,  0.000000 )     1.26796082
+  WF centre and spread   44  (  4.371678,  2.184442, -0.000000 )     1.26795815
+  WF centre and spread   45  (  4.370770,  2.184795,  0.001261 )     2.01870509
+  WF centre and spread   46  (  4.370608,  2.186740, -0.001016 )     2.01869070
+  WF centre and spread   47  (  4.371678,  2.193518,  4.371678 )     1.25623100
+  WF centre and spread   48  (  4.371678,  2.193518,  4.371678 )     1.25622892
+  WF centre and spread   49  (  4.371678,  2.193518,  4.371678 )     1.25622869
+  WF centre and spread   50  (  4.371678,  2.193518,  4.371678 )     1.25623077
+  WF centre and spread   51  (  4.371213,  2.196375,  4.372323 )     1.87404511
+  WF centre and spread   52  (  4.371131,  2.197586,  4.371159 )     1.87170774
+  WF centre and spread   53  (  4.371678,  6.556120,  0.000000 )     1.26795828
+  WF centre and spread   54  (  4.371678,  6.556120, -0.000000 )     1.26796095
+  WF centre and spread   55  (  4.371678,  6.558914,  0.000000 )     1.26795795
+  WF centre and spread   56  (  4.371678,  6.558913, -0.000000 )     1.26796062
+  WF centre and spread   57  (  4.370770,  6.556472,  0.001261 )     2.01870691
+  WF centre and spread   58  (  4.370608,  6.558416, -0.001016 )     2.01868912
+  WF centre and spread   59  (  4.371678,  6.549837,  4.371678 )     1.25622908
+  WF centre and spread   60  (  4.371678,  6.549838,  4.371678 )     1.25623116
+  WF centre and spread   61  (  4.371678,  6.549838,  4.371678 )     1.25623092
+  WF centre and spread   62  (  4.371678,  6.549837,  4.371678 )     1.25622884
+  WF centre and spread   63  (  4.371214,  6.545680,  4.372323 )     1.87154012
+  WF centre and spread   64  (  4.371131,  6.546891,  4.371159 )     1.87386698
+  WF centre and spread   65  ( -0.000464, -0.000571,  2.175384 )     1.87419143
+  WF centre and spread   66  ( -0.000547,  0.000492,  2.174057 )     1.87162575
+  WF centre and spread   67  (  0.000000, -0.000000,  2.178160 )     1.25623105
+  WF centre and spread   68  (  0.000000,  0.000000,  2.178160 )     1.25622877
+  WF centre and spread   69  (  0.000000, -0.000000,  2.178160 )     1.25623105
+  WF centre and spread   70  (  0.000000,  0.000000,  2.178160 )     1.25622877
+  WF centre and spread   71  ( -0.000464, -0.000571,  6.569441 )     1.87135552
+  WF centre and spread   72  ( -0.000547,  0.000492,  6.568114 )     1.87390961
+  WF centre and spread   73  (  0.000000, -0.000000,  6.565196 )     1.25622902
+  WF centre and spread   74  (  0.000000,  0.000000,  6.565196 )     1.25623129
+  WF centre and spread   75  (  0.000000, -0.000000,  6.565196 )     1.25622902
+  WF centre and spread   76  (  0.000000,  0.000000,  6.565196 )     1.25623129
+  WF centre and spread   77  ( -0.000908,  4.370562,  2.187019 )     2.01867684
+  WF centre and spread   78  ( -0.001070,  4.372640,  2.184889 )     2.01866170
+  WF centre and spread   79  (  0.000000,  4.371678,  2.187236 )     1.26795822
+  WF centre and spread   80  (  0.000000,  4.371678,  2.187236 )     1.26796114
+  WF centre and spread   81  ( -0.000000,  4.371678,  2.184442 )     1.26796080
+  WF centre and spread   82  ( -0.000000,  4.371678,  2.184442 )     1.26795788
+  WF centre and spread   83  ( -0.000908,  4.370562,  6.558697 )     2.01867686
+  WF centre and spread   84  ( -0.001070,  4.372640,  6.556566 )     2.01866167
+  WF centre and spread   85  (  0.000000,  4.371678,  6.556120 )     1.26796083
+  WF centre and spread   86  (  0.000000,  4.371678,  6.556120 )     1.26795791
+  WF centre and spread   87  ( -0.000000,  4.371678,  6.558914 )     1.26795820
+  WF centre and spread   88  ( -0.000000,  4.371678,  6.558913 )     1.26796112
+  WF centre and spread   89  (  4.370770, -0.001116,  2.187019 )     2.01867686
+  WF centre and spread   90  (  4.370608,  0.000962,  2.184889 )     2.01866167
+  WF centre and spread   91  (  4.371678,  0.000000,  2.184442 )     1.26796080
+  WF centre and spread   92  (  4.371678, -0.000000,  2.184442 )     1.26795788
+  WF centre and spread   93  (  4.371678, -0.000000,  2.187236 )     1.26795822
+  WF centre and spread   94  (  4.371678,  0.000000,  2.187236 )     1.26796114
+  WF centre and spread   95  (  4.370770, -0.001116,  6.558697 )     2.01867684
+  WF centre and spread   96  (  4.370608,  0.000962,  6.556566 )     2.01866170
+  WF centre and spread   97  (  4.371678,  0.000000,  6.558914 )     1.26795820
+  WF centre and spread   98  (  4.371678, -0.000000,  6.558913 )     1.26796112
+  WF centre and spread   99  (  4.371678, -0.000000,  6.556120 )     1.26796083
+  WF centre and spread  100  (  4.371678,  0.000000,  6.556120 )     1.26795791
+  WF centre and spread  101  (  4.371214,  4.371107,  2.197763 )     1.87135549
+  WF centre and spread  102  (  4.371131,  4.372170,  2.196437 )     1.87390957
+  WF centre and spread  103  (  4.371678,  4.371678,  2.193518 )     1.25622903
+  WF centre and spread  104  (  4.371678,  4.371678,  2.193518 )     1.25623131
+  WF centre and spread  105  (  4.371678,  4.371678,  2.193518 )     1.25622903
+  WF centre and spread  106  (  4.371678,  4.371678,  2.193518 )     1.25623131
+  WF centre and spread  107  (  4.371213,  4.371107,  6.547062 )     1.87419140
+  WF centre and spread  108  (  4.371131,  4.372170,  6.545735 )     1.87162571
+  WF centre and spread  109  (  4.371678,  4.371678,  6.549838 )     1.25623106
+  WF centre and spread  110  (  4.371678,  4.371678,  6.549837 )     1.25622878
+  WF centre and spread  111  (  4.371678,  4.371678,  6.549838 )     1.25623106
+  WF centre and spread  112  (  4.371678,  4.371678,  6.549837 )     1.25622878
+  WF centre and spread  113  (  2.178160, -0.000000,  0.000000 )     1.25623109
+  WF centre and spread  114  (  2.178160,  0.000000, -0.000000 )     1.25623093
+  WF centre and spread  115  (  2.174123, -0.000570,  0.000645 )     1.87177273
+  WF centre and spread  116  (  2.174029,  0.000492, -0.000519 )     1.87158729
+  WF centre and spread  117  (  2.178160,  0.000000, -0.000000 )     1.25623070
+  WF centre and spread  118  (  2.178160, -0.000000,  0.000000 )     1.25623086
+  WF centre and spread  119  (  2.184442,  0.000000,  4.371678 )     1.26796087
+  WF centre and spread  120  (  2.184442, -0.000000,  4.371677 )     1.26796066
+  WF centre and spread  121  (  2.184989, -0.001116,  4.372939 )     2.01870836
+  WF centre and spread  122  (  2.184837,  0.000962,  4.370662 )     2.01868992
+  WF centre and spread  123  (  2.187236,  0.000000,  4.371678 )     1.26795825
+  WF centre and spread  124  (  2.187236, -0.000000,  4.371678 )     1.26795804
+  WF centre and spread  125  (  2.187236,  4.371678,  0.000000 )     1.26795814
+  WF centre and spread  126  (  2.187236,  4.371678, -0.000000 )     1.26795835
+  WF centre and spread  127  (  2.184990,  4.370562,  0.001261 )     2.01870690
+  WF centre and spread  128  (  2.184839,  4.372640, -0.001016 )     2.01868820
+  WF centre and spread  129  (  2.184442,  4.371678,  0.000000 )     1.26796055
+  WF centre and spread  130  (  2.184442,  4.371678, -0.000000 )     1.26796076
+  WF centre and spread  131  (  2.193518,  4.371678,  4.371678 )     1.25622897
+  WF centre and spread  132  (  2.193518,  4.371678,  4.371678 )     1.25622913
+  WF centre and spread  133  (  2.196496,  4.371107,  4.372323 )     1.87381062
+  WF centre and spread  134  (  2.196402,  4.372170,  4.371158 )     1.87398846
+  WF centre and spread  135  (  2.193518,  4.371678,  4.371678 )     1.25622890
+  WF centre and spread  136  (  2.193518,  4.371678,  4.371678 )     1.25622873
+  WF centre and spread  137  (  6.565196, -0.000000,  0.000000 )     1.25622895
+  WF centre and spread  138  (  6.565196,  0.000000, -0.000000 )     1.25622912
+  WF centre and spread  139  (  6.568174, -0.000571,  0.000645 )     1.87381065
+  WF centre and spread  140  (  6.568080,  0.000492, -0.000519 )     1.87398849
+  WF centre and spread  141  (  6.565196,  0.000000, -0.000000 )     1.25622888
+  WF centre and spread  142  (  6.565196, -0.000000,  0.000000 )     1.25622872
+  WF centre and spread  143  (  6.558914,  0.000000,  4.371678 )     1.26795812
+  WF centre and spread  144  (  6.558914, -0.000000,  4.371677 )     1.26795833
+  WF centre and spread  145  (  6.556668, -0.001116,  4.372939 )     2.01870690
+  WF centre and spread  146  (  6.556516,  0.000962,  4.370662 )     2.01868820
+  WF centre and spread  147  (  6.556120,  0.000000,  4.371678 )     1.26796058
+  WF centre and spread  148  (  6.556120, -0.000000,  4.371678 )     1.26796078
+  WF centre and spread  149  (  6.556120,  4.371678,  0.000000 )     1.26796089
+  WF centre and spread  150  (  6.556120,  4.371678, -0.000000 )     1.26796068
+  WF centre and spread  151  (  6.556667,  4.370562,  0.001261 )     2.01870836
+  WF centre and spread  152  (  6.556515,  4.372640, -0.001016 )     2.01868992
+  WF centre and spread  153  (  6.558914,  4.371678,  0.000000 )     1.26795822
+  WF centre and spread  154  (  6.558914,  4.371678, -0.000000 )     1.26795801
+  WF centre and spread  155  (  6.549838,  4.371678,  4.371678 )     1.25623111
+  WF centre and spread  156  (  6.549838,  4.371678,  4.371678 )     1.25623095
+  WF centre and spread  157  (  6.545801,  4.371107,  4.372322 )     1.87177269
+  WF centre and spread  158  (  6.545707,  4.372170,  4.371159 )     1.87158726
+  WF centre and spread  159  (  6.549838,  4.371678,  4.371678 )     1.25623071
+  WF centre and spread  160  (  6.549838,  4.371678,  4.371678 )     1.25623087
+  Sum of centres and spreads (454.479420,454.640967,454.676025 )   288.61243630
+ 
+      0     0.289E+03     0.0000000000      288.6124362972      23.38  <-- CONV
+        O_D=      0.4212291 O_OD=     39.2419794 O_TOT=    288.6124363 <-- SPRD
+ ------------------------------------------------------------------------------
+ Final State
+  WF centre and spread    1  ( -0.003242, -0.003984,  0.004502 )     3.02738119
+  WF centre and spread    2  ( -0.003819,  0.003435, -0.003627 )     3.02716073
+  WF centre and spread    3  (  4.368436,  4.367694,  4.376180 )     3.02738091
+  WF centre and spread    4  (  4.367859,  4.375113,  4.368051 )     3.02716044
+  WF centre and spread    5  ( -0.009279, -0.011384,  4.385766 )     5.16320817
+  WF centre and spread    6  ( -0.010917,  0.009827,  4.360297 )     5.16107447
+  WF centre and spread    7  ( -0.009279,  4.359209,  0.012862 )     5.16332008
+  WF centre and spread    8  ( -0.010917,  4.382445, -0.010385 )     5.16133623
+  WF centre and spread    9  ( -0.010168,  4.360294,  4.384540 )     5.16305303
+  WF centre and spread   10  ( -0.011959,  4.381505,  4.361293 )     5.16147483
+  WF centre and spread   11  (  4.361510, -0.011384,  0.012862 )     5.16305319
+  WF centre and spread   12  (  4.359719,  0.009827, -0.010385 )     5.16147499
+  WF centre and spread   13  (  4.362399, -0.012469,  4.384540 )     5.16331991
+  WF centre and spread   14  (  4.360761,  0.010767,  4.361293 )     5.16133606
+  WF centre and spread   15  (  4.362399,  4.360294,  0.014088 )     5.16320800
+  WF centre and spread   16  (  4.360761,  4.381505, -0.011381 )     5.16107430
+  WF centre and spread   17  (  0.000000,  2.178160,  0.000000 )     1.25622906
+  WF centre and spread   18  (  0.000000,  2.178160, -0.000000 )     1.25623114
+  WF centre and spread   19  (  0.000000,  2.178160, -0.000000 )     1.25623091
+  WF centre and spread   20  (  0.000000,  2.178160,  0.000000 )     1.25622883
+  WF centre and spread   21  ( -0.000464,  2.174002,  0.000645 )     1.87154016
+  WF centre and spread   22  ( -0.000547,  2.175213, -0.000519 )     1.87386701
+  WF centre and spread   23  ( -0.000000,  2.184442,  4.371678 )     1.26795826
+  WF centre and spread   24  ( -0.000000,  2.184442,  4.371677 )     1.26796093
+  WF centre and spread   25  (  0.000000,  2.187236,  4.371678 )     1.26795798
+  WF centre and spread   26  (  0.000000,  2.187236,  4.371678 )     1.26796064
+  WF centre and spread   27  ( -0.000908,  2.184794,  4.372939 )     2.01870691
+  WF centre and spread   28  ( -0.001070,  2.186738,  4.370662 )     2.01868912
+  WF centre and spread   29  (  0.000000,  6.565196,  0.000000 )     1.25623099
+  WF centre and spread   30  (  0.000000,  6.565196, -0.000000 )     1.25622891
+  WF centre and spread   31  (  0.000000,  6.565196, -0.000000 )     1.25622867
+  WF centre and spread   32  (  0.000000,  6.565196,  0.000000 )     1.25623075
+  WF centre and spread   33  ( -0.000464,  6.568053,  0.000645 )     1.87404514
+  WF centre and spread   34  ( -0.000547,  6.569264, -0.000519 )     1.87170777
+  WF centre and spread   35  ( -0.000000,  6.558913,  4.371678 )     1.26796073
+  WF centre and spread   36  ( -0.000000,  6.558914,  4.371677 )     1.26795806
+  WF centre and spread   37  (  0.000000,  6.556120,  4.371678 )     1.26796084
+  WF centre and spread   38  (  0.000000,  6.556120,  4.371678 )     1.26795818
+  WF centre and spread   39  ( -0.000908,  6.556473,  4.372939 )     2.01870509
+  WF centre and spread   40  ( -0.001070,  6.558417,  4.370662 )     2.01869070
+  WF centre and spread   41  (  4.371678,  2.187236,  0.000000 )     1.26796075
+  WF centre and spread   42  (  4.371678,  2.187236, -0.000000 )     1.26795809
+  WF centre and spread   43  (  4.371678,  2.184442,  0.000000 )     1.26796082
+  WF centre and spread   44  (  4.371678,  2.184442, -0.000000 )     1.26795815
+  WF centre and spread   45  (  4.370770,  2.184795,  0.001261 )     2.01870509
+  WF centre and spread   46  (  4.370608,  2.186740, -0.001016 )     2.01869070
+  WF centre and spread   47  (  4.371678,  2.193518,  4.371678 )     1.25623100
+  WF centre and spread   48  (  4.371678,  2.193518,  4.371678 )     1.25622892
+  WF centre and spread   49  (  4.371678,  2.193518,  4.371678 )     1.25622869
+  WF centre and spread   50  (  4.371678,  2.193518,  4.371678 )     1.25623077
+  WF centre and spread   51  (  4.371213,  2.196375,  4.372323 )     1.87404511
+  WF centre and spread   52  (  4.371131,  2.197586,  4.371159 )     1.87170774
+  WF centre and spread   53  (  4.371678,  6.556120,  0.000000 )     1.26795828
+  WF centre and spread   54  (  4.371678,  6.556120, -0.000000 )     1.26796095
+  WF centre and spread   55  (  4.371678,  6.558914,  0.000000 )     1.26795795
+  WF centre and spread   56  (  4.371678,  6.558913, -0.000000 )     1.26796062
+  WF centre and spread   57  (  4.370770,  6.556472,  0.001261 )     2.01870691
+  WF centre and spread   58  (  4.370608,  6.558416, -0.001016 )     2.01868912
+  WF centre and spread   59  (  4.371678,  6.549837,  4.371678 )     1.25622908
+  WF centre and spread   60  (  4.371678,  6.549838,  4.371678 )     1.25623116
+  WF centre and spread   61  (  4.371678,  6.549838,  4.371678 )     1.25623092
+  WF centre and spread   62  (  4.371678,  6.549837,  4.371678 )     1.25622884
+  WF centre and spread   63  (  4.371214,  6.545680,  4.372323 )     1.87154012
+  WF centre and spread   64  (  4.371131,  6.546891,  4.371159 )     1.87386698
+  WF centre and spread   65  ( -0.000464, -0.000571,  2.175384 )     1.87419143
+  WF centre and spread   66  ( -0.000547,  0.000492,  2.174057 )     1.87162575
+  WF centre and spread   67  (  0.000000, -0.000000,  2.178160 )     1.25623105
+  WF centre and spread   68  (  0.000000,  0.000000,  2.178160 )     1.25622877
+  WF centre and spread   69  (  0.000000, -0.000000,  2.178160 )     1.25623105
+  WF centre and spread   70  (  0.000000,  0.000000,  2.178160 )     1.25622877
+  WF centre and spread   71  ( -0.000464, -0.000571,  6.569441 )     1.87135552
+  WF centre and spread   72  ( -0.000547,  0.000492,  6.568114 )     1.87390961
+  WF centre and spread   73  (  0.000000, -0.000000,  6.565196 )     1.25622902
+  WF centre and spread   74  (  0.000000,  0.000000,  6.565196 )     1.25623129
+  WF centre and spread   75  (  0.000000, -0.000000,  6.565196 )     1.25622902
+  WF centre and spread   76  (  0.000000,  0.000000,  6.565196 )     1.25623129
+  WF centre and spread   77  ( -0.000908,  4.370562,  2.187019 )     2.01867684
+  WF centre and spread   78  ( -0.001070,  4.372640,  2.184889 )     2.01866170
+  WF centre and spread   79  (  0.000000,  4.371678,  2.187236 )     1.26795822
+  WF centre and spread   80  (  0.000000,  4.371678,  2.187236 )     1.26796114
+  WF centre and spread   81  ( -0.000000,  4.371678,  2.184442 )     1.26796080
+  WF centre and spread   82  ( -0.000000,  4.371678,  2.184442 )     1.26795788
+  WF centre and spread   83  ( -0.000908,  4.370562,  6.558697 )     2.01867686
+  WF centre and spread   84  ( -0.001070,  4.372640,  6.556566 )     2.01866167
+  WF centre and spread   85  (  0.000000,  4.371678,  6.556120 )     1.26796083
+  WF centre and spread   86  (  0.000000,  4.371678,  6.556120 )     1.26795791
+  WF centre and spread   87  ( -0.000000,  4.371678,  6.558914 )     1.26795820
+  WF centre and spread   88  ( -0.000000,  4.371678,  6.558913 )     1.26796112
+  WF centre and spread   89  (  4.370770, -0.001116,  2.187019 )     2.01867686
+  WF centre and spread   90  (  4.370608,  0.000962,  2.184889 )     2.01866167
+  WF centre and spread   91  (  4.371678,  0.000000,  2.184442 )     1.26796080
+  WF centre and spread   92  (  4.371678, -0.000000,  2.184442 )     1.26795788
+  WF centre and spread   93  (  4.371678, -0.000000,  2.187236 )     1.26795822
+  WF centre and spread   94  (  4.371678,  0.000000,  2.187236 )     1.26796114
+  WF centre and spread   95  (  4.370770, -0.001116,  6.558697 )     2.01867684
+  WF centre and spread   96  (  4.370608,  0.000962,  6.556566 )     2.01866170
+  WF centre and spread   97  (  4.371678,  0.000000,  6.558914 )     1.26795820
+  WF centre and spread   98  (  4.371678, -0.000000,  6.558913 )     1.26796112
+  WF centre and spread   99  (  4.371678, -0.000000,  6.556120 )     1.26796083
+  WF centre and spread  100  (  4.371678,  0.000000,  6.556120 )     1.26795791
+  WF centre and spread  101  (  4.371214,  4.371107,  2.197763 )     1.87135549
+  WF centre and spread  102  (  4.371131,  4.372170,  2.196437 )     1.87390957
+  WF centre and spread  103  (  4.371678,  4.371678,  2.193518 )     1.25622903
+  WF centre and spread  104  (  4.371678,  4.371678,  2.193518 )     1.25623131
+  WF centre and spread  105  (  4.371678,  4.371678,  2.193518 )     1.25622903
+  WF centre and spread  106  (  4.371678,  4.371678,  2.193518 )     1.25623131
+  WF centre and spread  107  (  4.371213,  4.371107,  6.547062 )     1.87419140
+  WF centre and spread  108  (  4.371131,  4.372170,  6.545735 )     1.87162571
+  WF centre and spread  109  (  4.371678,  4.371678,  6.549838 )     1.25623106
+  WF centre and spread  110  (  4.371678,  4.371678,  6.549837 )     1.25622878
+  WF centre and spread  111  (  4.371678,  4.371678,  6.549838 )     1.25623106
+  WF centre and spread  112  (  4.371678,  4.371678,  6.549837 )     1.25622878
+  WF centre and spread  113  (  2.178160, -0.000000,  0.000000 )     1.25623109
+  WF centre and spread  114  (  2.178160,  0.000000, -0.000000 )     1.25623093
+  WF centre and spread  115  (  2.174123, -0.000570,  0.000645 )     1.87177273
+  WF centre and spread  116  (  2.174029,  0.000492, -0.000519 )     1.87158729
+  WF centre and spread  117  (  2.178160,  0.000000, -0.000000 )     1.25623070
+  WF centre and spread  118  (  2.178160, -0.000000,  0.000000 )     1.25623086
+  WF centre and spread  119  (  2.184442,  0.000000,  4.371678 )     1.26796087
+  WF centre and spread  120  (  2.184442, -0.000000,  4.371677 )     1.26796066
+  WF centre and spread  121  (  2.184989, -0.001116,  4.372939 )     2.01870836
+  WF centre and spread  122  (  2.184837,  0.000962,  4.370662 )     2.01868992
+  WF centre and spread  123  (  2.187236,  0.000000,  4.371678 )     1.26795825
+  WF centre and spread  124  (  2.187236, -0.000000,  4.371678 )     1.26795804
+  WF centre and spread  125  (  2.187236,  4.371678,  0.000000 )     1.26795814
+  WF centre and spread  126  (  2.187236,  4.371678, -0.000000 )     1.26795835
+  WF centre and spread  127  (  2.184990,  4.370562,  0.001261 )     2.01870690
+  WF centre and spread  128  (  2.184839,  4.372640, -0.001016 )     2.01868820
+  WF centre and spread  129  (  2.184442,  4.371678,  0.000000 )     1.26796055
+  WF centre and spread  130  (  2.184442,  4.371678, -0.000000 )     1.26796076
+  WF centre and spread  131  (  2.193518,  4.371678,  4.371678 )     1.25622897
+  WF centre and spread  132  (  2.193518,  4.371678,  4.371678 )     1.25622913
+  WF centre and spread  133  (  2.196496,  4.371107,  4.372323 )     1.87381062
+  WF centre and spread  134  (  2.196402,  4.372170,  4.371158 )     1.87398846
+  WF centre and spread  135  (  2.193518,  4.371678,  4.371678 )     1.25622890
+  WF centre and spread  136  (  2.193518,  4.371678,  4.371678 )     1.25622873
+  WF centre and spread  137  (  6.565196, -0.000000,  0.000000 )     1.25622895
+  WF centre and spread  138  (  6.565196,  0.000000, -0.000000 )     1.25622912
+  WF centre and spread  139  (  6.568174, -0.000571,  0.000645 )     1.87381065
+  WF centre and spread  140  (  6.568080,  0.000492, -0.000519 )     1.87398849
+  WF centre and spread  141  (  6.565196,  0.000000, -0.000000 )     1.25622888
+  WF centre and spread  142  (  6.565196, -0.000000,  0.000000 )     1.25622872
+  WF centre and spread  143  (  6.558914,  0.000000,  4.371678 )     1.26795812
+  WF centre and spread  144  (  6.558914, -0.000000,  4.371677 )     1.26795833
+  WF centre and spread  145  (  6.556668, -0.001116,  4.372939 )     2.01870690
+  WF centre and spread  146  (  6.556516,  0.000962,  4.370662 )     2.01868820
+  WF centre and spread  147  (  6.556120,  0.000000,  4.371678 )     1.26796058
+  WF centre and spread  148  (  6.556120, -0.000000,  4.371678 )     1.26796078
+  WF centre and spread  149  (  6.556120,  4.371678,  0.000000 )     1.26796089
+  WF centre and spread  150  (  6.556120,  4.371678, -0.000000 )     1.26796068
+  WF centre and spread  151  (  6.556667,  4.370562,  0.001261 )     2.01870836
+  WF centre and spread  152  (  6.556515,  4.372640, -0.001016 )     2.01868992
+  WF centre and spread  153  (  6.558914,  4.371678,  0.000000 )     1.26795822
+  WF centre and spread  154  (  6.558914,  4.371678, -0.000000 )     1.26795801
+  WF centre and spread  155  (  6.549838,  4.371678,  4.371678 )     1.25623111
+  WF centre and spread  156  (  6.549838,  4.371678,  4.371678 )     1.25623095
+  WF centre and spread  157  (  6.545801,  4.371107,  4.372322 )     1.87177269
+  WF centre and spread  158  (  6.545707,  4.372170,  4.371159 )     1.87158726
+  WF centre and spread  159  (  6.549838,  4.371678,  4.371678 )     1.25623071
+  WF centre and spread  160  (  6.549838,  4.371678,  4.371678 )     1.25623087
+  Sum of centres and spreads (454.479420,454.640967,454.676025 )   288.61243630
+ 
+         Spreads (Ang^2)       Omega I      =   248.949227776
+        ================       Omega D      =     0.421229104
+                               Omega OD     =    39.241979417
+    Final Spread (Ang^2)       Omega Total  =   288.612436297
+ ------------------------------------------------------------------------------
+ 
+ On-site Hamiltonian matrix elements
+     n        <0n|H|0n> (eV)
+   -------------------------
+     1         4.154270
+     2         4.154270
+     3         4.154270
+     4         4.154270
+     5         7.404008
+     6         7.404008
+     7         7.404008
+     8         7.404008
+     9         7.404008
+    10         7.404008
+    11         7.404008
+    12         7.404008
+    13         7.404008
+    14         7.404008
+    15         7.404008
+    16         7.404008
+    17         7.332422
+    18         7.332423
+    19         7.332423
+    20         7.332422
+    21         5.820282
+    22         5.820920
+    23         7.600771
+    24         7.600771
+    25         7.600771
+    26         7.600771
+    27         6.351956
+    28         6.351956
+    29         7.332423
+    30         7.332422
+    31         7.332422
+    32         7.332423
+    33         5.820967
+    34         5.820329
+    35         7.600771
+    36         7.600771
+    37         7.600771
+    38         7.600771
+    39         6.351956
+    40         6.351956
+    41         7.600771
+    42         7.600771
+    43         7.600771
+    44         7.600771
+    45         6.351956
+    46         6.351956
+    47         7.332423
+    48         7.332422
+    49         7.332422
+    50         7.332423
+    51         5.820967
+    52         5.820329
+    53         7.600771
+    54         7.600771
+    55         7.600771
+    56         7.600771
+    57         6.351956
+    58         6.351956
+    59         7.332422
+    60         7.332423
+    61         7.332423
+    62         7.332422
+    63         5.820282
+    64         5.820920
+    65         5.821012
+    66         5.820312
+    67         7.332423
+    68         7.332422
+    69         7.332423
+    70         7.332422
+    71         5.820237
+    72         5.820937
+    73         7.332422
+    74         7.332423
+    75         7.332422
+    76         7.332423
+    77         6.351956
+    78         6.351956
+    79         7.600771
+    80         7.600771
+    81         7.600771
+    82         7.600771
+    83         6.351956
+    84         6.351956
+    85         7.600771
+    86         7.600771
+    87         7.600771
+    88         7.600771
+    89         6.351956
+    90         6.351956
+    91         7.600771
+    92         7.600771
+    93         7.600771
+    94         7.600771
+    95         6.351956
+    96         6.351956
+    97         7.600771
+    98         7.600771
+    99         7.600771
+   100         7.600771
+   101         5.820237
+   102         5.820937
+   103         7.332422
+   104         7.332423
+   105         7.332422
+   106         7.332423
+   107         5.821012
+   108         5.820312
+   109         7.332423
+   110         7.332422
+   111         7.332423
+   112         7.332422
+   113         7.332423
+   114         7.332423
+   115         5.820346
+   116         5.820296
+   117         7.332423
+   118         7.332423
+   119         7.600771
+   120         7.600771
+   121         6.351956
+   122         6.351956
+   123         7.600771
+   124         7.600771
+   125         7.600771
+   126         7.600771
+   127         6.351956
+   128         6.351956
+   129         7.600771
+   130         7.600771
+   131         7.332422
+   132         7.332422
+   133         5.820903
+   134         5.820953
+   135         7.332422
+   136         7.332422
+   137         7.332422
+   138         7.332422
+   139         5.820903
+   140         5.820953
+   141         7.332422
+   142         7.332422
+   143         7.600771
+   144         7.600771
+   145         6.351956
+   146         6.351956
+   147         7.600771
+   148         7.600771
+   149         7.600771
+   150         7.600771
+   151         6.351956
+   152         6.351956
+   153         7.600771
+   154         7.600771
+   155         7.332423
+   156         7.332423
+   157         5.820346
+   158         5.820296
+   159         7.332423
+   160         7.332423
+ 
+ Time for wannierise            5.711 (sec)
+
+ Writing checkpoint file BPBO.chk... done
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+ 
+ 
+ Calculating interpolated band-structure
+ 
+ Time to calculate interpolated band structure      80.167 (sec)
+ 
+ Time for plotting             95.446 (sec)
+ Total Execution Time         191.280 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         0.035|
+ |overlap: allocate                                 :         1         0.008|
+ |overlap: read                                     :         1        60.595|
+ |dis: main                                         :         1        29.146|
+ |wann: main                                        :         1         5.711|
+ |plot: main                                        :         1        95.446|
+ *---------------------------------------------------------------------------*
+ 
+ All done: wannier90 exiting

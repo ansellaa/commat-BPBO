@@ -1,0 +1,8 @@
+&PROJWFC
+     prefix = 'bpbo'
+     outdir = './out/'
+     ngauss = -1
+     degauss = 0.03
+     DeltaE = 0.01
+     filpdos = 'BPBO.pdos.dat'
+   /

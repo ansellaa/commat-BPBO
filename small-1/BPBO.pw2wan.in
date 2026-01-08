@@ -1,0 +1,11 @@
+&inputpp 
+   outdir = './out'
+   prefix = 'bpbo'
+   seedname = 'BPBO'
+   spin_component = 'none'
+   write_mmn = .true.
+   write_amn = .true.
+   write_spn = .true.
+   write_unk = .false.
+   spn_formatted = .false.
+/
