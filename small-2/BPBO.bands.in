@@ -1,0 +1,5 @@
+&BANDS
+ outdir='./out/',
+ prefix='bpbo',
+ filband='BPBO.bands',
+/
