@@ -1,6 +1,8 @@
-Folders named 'small-1', 'small-2', 'small-3', 'small-bpo' contains input and (some) output files that we have used in our calculations.
+Folders named 'small-1', 'small-2', 'small-3', and 'small-bpo' contains input and (some) output files that we have used in our calculations.
 
-Folders named 'pdos-1', 'pdos-2', 'pdos-3', 'pdos-bpo' folders contains the pdos output that we have done and used for our manuscript.
+Folders named 'pdos-1', 'pdos-2', 'pdos-3', and 'pdos-bpo' folders contains the pdos output that we have done and used for our manuscript.
+
+Files named 'Calculation_1BPBO.py', 'Calculation_2BPBO.py', and 'Calculation_3BPBO.py' are files used to calculate extrinsic SHC for each BPBO with some of the DFT output results necessary for the extrinsic SHC formulation included.
 
 File named pseudo.zip is the general file for all materials in this work and contains pseudopotentials used for our work. Make sure to update the pseudopotential directory in the input files to run the task properly.
 
